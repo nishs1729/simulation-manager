@@ -1,3 +1,4 @@
 test_*
 .git
 data
+__pycache__
