@@ -98,13 +98,6 @@ class SimulationManager(ABC):
         logging.info(f"Saved config to '{config_path}'.")
 
     @abstractmethod
-    def initialize_simulation(self):
-        """
-        Initialize simulation-specific parameters and state.
-        """
-        pass
-
-    @abstractmethod
     def run(self):
         """
         Execute the simulation.
