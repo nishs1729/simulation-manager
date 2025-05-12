@@ -91,7 +91,14 @@ if __name__ == "__main__":
         }
     }
 
-    seed = int(sys.argv[1])
+    try:
+        seed = int(sys.argv[1])
+    except IndexError:
+        seed = 42  # Default seed value
+    except ValueError:
+        print(f"Invalid seed (must be integer). Setting, seed = 42")
+        seed = 42
+
     model = FHN(config, seed=seed, log_info='')
     model.run()
     # model.plot_results()
