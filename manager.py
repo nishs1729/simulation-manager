@@ -60,14 +60,14 @@ class SimulationManager(ABC):
         else:
             self.sim_dir = f"sim_{datetime.now().strftime("%Y%m%d_%H%M%S")}"
 
-        self.sim_path = os.path.join(self.data_loc, self.sim_dir)
+        self.sim_path = os.path.join(self.data_loc, self.sim_dir, f"trial_{self.trial}")
         os.makedirs(self.sim_path, exist_ok=True)
 
         ## Setup logging
         self._setup_logging(log_info)
 
         ## Create a 'Readme.md' file and write the description
-        readme_path = os.path.join(self.sim_path, "Readme.md")
+        readme_path = os.path.join(os.path.dirname(self.sim_path), "Readme.md")
         with open(readme_path, "w") as readme_file:
             readme_file.write(self.config['description'])
 
@@ -91,7 +91,7 @@ class SimulationManager(ABC):
     def _save_config(self):
         ## Update config with params and save in json file
         self.config['params'] = self.params
-        config_path = os.path.join(self.sim_path, "config.json")
+        config_path = os.path.join(os.path.dirname(self.sim_path), "config.json")
         with open(config_path, "w") as config_file:
             json.dump(self.config, config_file, indent=4)
 

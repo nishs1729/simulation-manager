@@ -1,3 +1,4 @@
+import sys
 from manager import *
 import numpy as np
 import matplotlib.pyplot as plt
@@ -89,7 +90,9 @@ if __name__ == "__main__":
             'y0': [0.1, 0.5,]
         }
     }
-    model = FHN(config, seed=42, log_info='')
+
+    seed = int(sys.argv[1])
+    model = FHN(config, seed=seed, log_info='')
     model.run()
-    model.plot_results()
+    # model.plot_results()
     model.save_data()
